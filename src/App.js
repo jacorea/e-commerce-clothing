@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './pages/homepage/homepage.component'
 import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import MenuItem from './components/menu-item/menu-item.component'
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 
@@ -26,9 +26,8 @@ class App extends React.Component {
   
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
-      this.setState({ currentUser: user });
-      console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user);
     })
   }
 

@@ -11,7 +11,6 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 
 
 import './App.css';
-import { create } from 'domain';
 
 
 class App extends React.Component {
@@ -37,6 +36,7 @@ class App extends React.Component {
               ...snapShot.data()
             }
           })
+          console.log(this.state);
         })
       }
       this.setState({currentUser: userAuth });
